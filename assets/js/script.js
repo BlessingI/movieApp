@@ -1,22 +1,4 @@
-const firstFetch = document.querySelector('.firstFetch')
-const firstFetchTitle = document.querySelector('.firstFetchTitle')
-
-const secondFetch = document.querySelector('.secondFetch')
-const secondFetchTitle = document.querySelector('.secondFetchTitle')
-
-const thirdFetch = document.querySelector('.thirdFetch')
-const thirdFetchTitle = document.querySelector('.thirdFetchTitle')
-
-const fourthFetch = document.querySelector('.fourthFetch')
-const fourthFetchTitle = document.querySelector('.fourthFetchTitle')
-
-const fifthFetch = document.querySelector('.fifthFetch')
-const fifthFetchTitle = document.querySelector('.fifthFetchTitle')
-
-
-
-
-
+const getClassRow = document.querySelector('.row')
 
 const getFetchedMovie = function() {
     // format the github api url
@@ -34,29 +16,31 @@ const getFetchedMovie = function() {
             console.log(data.results[0])
 
             for(let i = 0; i< data.results.length; i++){
-                console.log('hey')
+                console.log(data.results[i].poster_path)
+                let firstDiv = document.createElement('div')
+                firstDiv.className = "card my-2 mx-2";
+                firstDiv.setAttribute("style","width: 18rem");
+
+                let secondDiv = document.createElement('div')
+                secondDiv.className = "card"
+                let newPic = document.createElement('img')
+                newPic.src = "https://image.tmdb.org/t/p/w1280/" + data.results[i].poster_path
+                secondDiv.appendChild(newPic)
+
+                firstDiv.appendChild(secondDiv)
+
+                let thirdDiv = document.createElement('div')
+                thirdDiv.className = "card-body bg-danger";
+                let paragraph = document.createElement('p')
+                paragraph.textContent = data.results[i].original_title
+                thirdDiv.appendChild(paragraph)
+
+                firstDiv.appendChild(thirdDiv)
+
+                getClassRow.appendChild(firstDiv)
+
+                
             }
-
-
-
-
-
-
-            // const displayPosterAndTitle = (fetch, fetchTitle, y) => {
-            //     let newPic = document.createElement('img')
-            //     newPic.src = "https://image.tmdb.org/t/p/w1280/" + data.results[y].poster_path
-            
-            //     fetch.textContent = ""
-            //     fetch.appendChild(newPic)
-            //     fetchTitle.textContent = data.results[y].original_title
-            
-            //   }
-
-            //     displayPosterAndTitle(firstFetch, firstFetchTitle, 0)
-            //     displayPosterAndTitle(secondFetch, secondFetchTitle, 1)
-            //     displayPosterAndTitle(thirdFetch, thirdFetchTitle, 2)
-            //     displayPosterAndTitle(fourthFetch, fourthFetchTitle, 3)
-            //     displayPosterAndTitle(fifthFetch, fifthFetchTitle, 4)
 
 
           });
